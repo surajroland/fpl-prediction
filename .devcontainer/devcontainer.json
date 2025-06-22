@@ -1,0 +1,57 @@
+{
+    "name": "FPL",
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+    "service": "fpl-dev",
+    "workspaceFolder": "/workspace",
+    "remoteEnv": {
+        "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}",
+        "HF_TOKEN": "${localEnv:HF_TOKEN}",
+        "WANDB_API_KEY": "${localEnv:WANDB_API_KEY}"
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                // Python development
+                "ms-python.python",
+                "ms-python.black-formatter",
+                "ms-python.isort",
+                "ms-python.mypy-type-checker",
+                // ML/Data science tools
+                "ms-toolsai.jupyter",
+                "ms-toolsai.tensorboard",
+                // Configuration & build tools
+                "redhat.vscode-yaml",
+                "ms-vscode.makefile-tools",
+                // Container development
+                "ms-vscode-remote.remote-containers",
+                // Git tools
+                "mhutchie.git-graph",
+                // UI/Theme enhancements
+                "pkief.material-icon-theme",
+                "zhuangtongfa.material-theme",
+                // AI assistance
+                "github.copilot",
+                "github.copilot-chat",
+                // Data file viewing
+                "mechatroner.rainbow-csv"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.formatting.provider": "black",
+                "editor.formatOnSave": true
+            }
+        }
+    },
+    "forwardPorts": [
+        8888,
+        6006,
+        5000
+    ],
+    "postCreateCommand": "pip install --break-system-packages -e ."
+}

@@ -1,0 +1,26 @@
+# FPL Data Configuration
+dataset:
+  name: fpl_2023_24
+  source: api
+  features:
+    - minutes
+    - goals_scored  
+    - assists
+    - bps
+    - influence
+    - creativity
+    - threat
+    - ict_index
+    - expected_goals
+    - expected_assists
+  
+preprocessing:
+  rolling_window: 5
+  min_games: 3
+  top_percent: 20
+  
+splits:
+  train_size: 0.7
+  val_size: 0.2
+  test_size: 0.1
+  gameweek_split: true

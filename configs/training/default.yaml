@@ -1,0 +1,30 @@
+# Training Configuration
+trainer:
+  max_epochs: 1000
+  early_stopping_rounds: 50
+  eval_metric: rmse
+  
+hyperparameter_search:
+  enabled: false
+  method: optuna
+  n_trials: 100
+  
+evaluation:
+  metrics:
+    - rmse
+    - mae
+    - r2_score
+  cross_validation:
+    enabled: true
+    folds: 5
+    
+callbacks:
+  model_checkpoint:
+    enabled: true
+    save_best: true
+  tensorboard:
+    enabled: true
+    log_dir: logs/tensorboard
+  mlflow:
+    enabled: true
+    experiment_name: fpl_xgboost

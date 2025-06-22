@@ -1,0 +1,20 @@
+defaults:
+  - data: fpl_data
+  - model: xgboost
+  - training: default
+  - experiment: baseline
+
+# Global settings
+project_name: fpl_xgboost
+seed: 42
+debug: false
+
+# Directories
+data_dir: data
+models_dir: models
+logs_dir: logs
+
+# Logging
+log_level: INFO
+use_wandb: false
+use_mlflow: true

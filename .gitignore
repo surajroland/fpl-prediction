@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.env
+data/raw/*
+data/processed/*
+models/*.pkl
+logs/*
+mlruns/
+.hydra/
+outputs/
+.pytest_cache/
+.mypy_cache/
+.coverage

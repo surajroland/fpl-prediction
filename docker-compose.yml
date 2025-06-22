@@ -1,0 +1,43 @@
+services:
+  fpl-dev:
+    build: .
+    image: fpl-dev:v0.1
+    container_name: fpl-dev
+    volumes:
+      - .:/workspace
+      - ~/.ssh:/root/.ssh:ro
+      - ~/.gitconfig:/root/.gitconfig:ro
+      - bash-history:/root
+      - fpl-data:/workspace/data
+      - fpl-logs:/workspace/logs
+      - fpl-models:/workspace/models
+    ports:
+      - "${JUPYTER_PORT:-8888}:8888"
+      - "${TENSORBOARD_PORT:-6006}:6006"
+      - "${WANDB_PORT:-8097}:8097"
+    environment:
+      - PYTHONPATH=/workspace/src
+      - HYDRA_FULL_ERROR=1
+    command: bash
+    stdin_open: true
+    tty: true
+
+  mlflow-server:
+    image: python:3.12-slim
+    container_name: fpl-mlflow
+    ports:
+      - "5000:5000"
+    volumes:
+      - mlflow-data:/mlflow
+    command: |
+      bash -c "
+        pip install mlflow &&
+        mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri file:///mlflow
+      "
+
+volumes:
+  fpl-data:
+  fpl-logs:
+  fpl-models:
+  mlflow-data:
+  bash-history:

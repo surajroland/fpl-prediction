@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "fpl-xgboost"
+version = "0.1.0"
+description = "FPL XGBoost training pipeline with advanced monitoring"
+authors = ["Your Name <your@email.com>"]
+packages = [{include = "fpl", from = "src"}]
+
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.flake8]
+max-line-length = 88
+ignore = "E501,F401"
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+disallow_untyped_defs = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
